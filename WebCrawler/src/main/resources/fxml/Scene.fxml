@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.webcrawler.webcrawler.FXMLController">
+<AnchorPane id="AnchorPane" prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.webcrawler.webcrawler.FXMLController">
     <children>
         <Button fx:id="button" alignment="TOP_CENTER" layoutX="279.0" layoutY="379.0" onAction="#handleButtonAction" prefHeight="17.0" prefWidth="85.0" text="Buscar" />
       <Label layoutX="216.0" layoutY="86.0" text="Web Crawler" textAlignment="CENTER">
@@ -25,7 +25,7 @@
          <font>
             <Font size="18.0" />
          </font></Label>
-      <TextField alignment="TOP_CENTER" layoutX="210.0" layoutY="285.0" promptText="Inserir URL">
+      <TextField fx:id="url" alignment="TOP_CENTER" layoutX="210.0" layoutY="285.0" promptText="Inserir URL">
          <font>
             <Font size="18.0" />
          </font></TextField>

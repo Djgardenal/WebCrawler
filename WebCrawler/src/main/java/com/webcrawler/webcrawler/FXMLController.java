@@ -9,20 +9,21 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 
 public class FXMLController implements Initializable {
     
     @FXML
-    private Label label;
+    private TextField url;
+    
     
     @FXML
     private void handleButtonAction(ActionEvent event) throws IOException {
         System.out.println("You clicked me!");
-        label.setText("Hello World!");
-        String pagina =Buscador.baixarPaginaURL("http://www.fsg.br");
+        String pagina =Buscador.baixarPaginaSocket(url.getText());
         File file = Buscador.gravaArquivo(pagina);
         Analisador.buscaLinks(file);
+        System.out.println("fim");
         
     }
     

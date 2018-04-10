@@ -28,15 +28,18 @@ public class Buscador {
 
     public static String baixarPaginaSocket(String urlString) {
         try {
-            Socket socket = new Socket(InetAddress.getByName(urlString), 80);
-            PrintWriter pw = new 
-            
-            
-            
+            URL url = new URL(urlString);
+            String host = url.getHost();
+            String path = url.getPath().isEmpty()?"/":url.getPath();
+            Socket socket = new Socket(InetAddress.getByName(url.getHost()), 80);
+            PrintWriter pw = new PrintWriter(socket.getOutputStream());
+            pw.println("GET "+path+" HTTP/1.1");
+            pw.println("Host: "+host);
+            pw.println("");
+            pw.flush();
+            pw.close();
             String buffer = converteInputStreamToString(socket.getInputStream());
-
             socket.close();
-            
             return buffer;
 
         } catch (MalformedURLException ex) {
@@ -80,6 +83,7 @@ public class Buscador {
             String linha;
             StringBuffer buffer = new StringBuffer();
             while ((linha = reader.readLine()) != null) {
+                System.out.println(linha);
                 buffer.append(linha + "\n");
             }
             if (buffer.length() == 0) {
@@ -94,7 +98,7 @@ public class Buscador {
 
     public static File gravaArquivo(String conteudo) throws IOException {
         String linha;
-        File file = new File("pagina.html");
+        File file = new File("teste.html");
         file.createNewFile();
         FileWriter fileWriter = new FileWriter(file);
         fileWriter.write(conteudo);
