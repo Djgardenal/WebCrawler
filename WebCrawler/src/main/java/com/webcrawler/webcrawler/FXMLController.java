@@ -5,6 +5,7 @@ import com.webcrawler.crawler.Buscador;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -22,7 +23,7 @@ public class FXMLController implements Initializable {
     @FXML
     private void handleButtonAction(ActionEvent event) throws IOException {
         System.out.println("Inicio");
-        baixar(url.getText(), 2);
+         baixar(url.getText(), 2);
         System.out.println("fim");
 
     }

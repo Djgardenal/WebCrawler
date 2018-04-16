@@ -98,11 +98,13 @@ public class Buscador {
     public static File gravaArquivo(String conteudo) throws IOException {
         String linha;
         Date dt = new Date();
-        File file = new File("./"+dt.getYear()
+        String caminho = ""+dt.getYear()
                 + "/" + dt.getMonth()
                 + "/" + dt.getDay()
-                + "/" + dt.getTime() + ".html");
-        file.createNewFile();
+                + "/" ;
+        new File(caminho ).mkdirs();
+        File file = new File(caminho+"/"+dt.getTime() + ".html");
+        file.createNewFile();       
         FileWriter fileWriter = new FileWriter(file);
         fileWriter.write(conteudo);
         fileWriter.flush();
