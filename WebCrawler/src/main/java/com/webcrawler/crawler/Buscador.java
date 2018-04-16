@@ -17,6 +17,7 @@ import java.net.InetAddress;
 import java.net.MalformedURLException;
 import java.net.Socket;
 import java.net.URL;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -30,14 +31,13 @@ public class Buscador {
         try {
             URL url = new URL(urlString);
             String host = url.getHost();
-            String path = url.getPath().isEmpty()?"/":url.getPath();
+            String path = url.getPath().isEmpty() ? "/" : url.getPath();
             Socket socket = new Socket(InetAddress.getByName(url.getHost()), 80);
             PrintWriter pw = new PrintWriter(socket.getOutputStream());
-            pw.println("GET "+path+" HTTP/1.1");
-            pw.println("Host: "+host);
-            pw.println("");
+            pw.println("GET " + path + " HTTP/1.1");
+            pw.println("Host: " + host);
+            pw.println("\n\r");
             pw.flush();
-            pw.close();
             String buffer = converteInputStreamToString(socket.getInputStream());
             socket.close();
             return buffer;
@@ -83,7 +83,6 @@ public class Buscador {
             String linha;
             StringBuffer buffer = new StringBuffer();
             while ((linha = reader.readLine()) != null) {
-                System.out.println(linha);
                 buffer.append(linha + "\n");
             }
             if (buffer.length() == 0) {
@@ -98,7 +97,11 @@ public class Buscador {
 
     public static File gravaArquivo(String conteudo) throws IOException {
         String linha;
-        File file = new File("teste.html");
+        Date dt = new Date();
+        File file = new File("./"+dt.getYear()
+                + "/" + dt.getMonth()
+                + "/" + dt.getDay()
+                + "/" + dt.getTime() + ".html");
         file.createNewFile();
         FileWriter fileWriter = new FileWriter(file);
         fileWriter.write(conteudo);
