@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.webcrawler.crawler;
 
 import java.io.File;
@@ -17,12 +12,20 @@ import org.jsoup.nodes.Element;
 
 /**
  *
- * @author elias
+ * @author Elias Appio Mezalira
+ * @author Lucas Hoffman
  */
 public class Analisador {
 
+    
+    /**
+     * Percore um arquivo para encontar as tags "<a>" e obter o conteudo de seu
+     * atributo href;
+     * 
+     * @param file Contendo o html a ser análisado
+     * @return Lista com links encontrados.
+     */
     public static List<String> buscaLinks(File file) {
-
         try {
             List<String> links = new ArrayList();
             Document documento = Jsoup.parse(file, "UTF-8");

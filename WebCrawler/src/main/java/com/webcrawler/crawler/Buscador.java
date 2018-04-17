@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.webcrawler.crawler;
 
 import java.io.BufferedReader;
@@ -23,10 +18,18 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author elias
+ * @author Elias Appio Mezalira
+ * @author Lucas Hoffman
  */
 public class Buscador {
 
+    /**
+     * Baixa pagina utilizando um soket
+     * 
+     * @param urlString url da pagina a ser baixada
+     * @return string com página baixada
+     */
+    
     public static String baixarPaginaSocket(String urlString) {
         try {
             URL url = new URL(urlString);
@@ -52,6 +55,13 @@ public class Buscador {
 
     }
 
+    /**
+     * Baixa pagina utilizando um HttpUrlConnection
+     * 
+     * @param urlString url da pagina a ser baixada
+     * @return string com página baixada
+     */
+    
     public static String baixarPaginaURL(String urlString) {
         try {
             URL url = new URL(urlString);
@@ -74,6 +84,12 @@ public class Buscador {
 
     }
 
+    /**
+     * Converte input stream com HTML de uma página para string
+     * 
+     * @param inputStream 
+     * @return String com conteudo html da pá
+     */
     private static String converteInputStreamToString(InputStream inputStream) {
         try {
             if (inputStream == null) {
@@ -95,6 +111,15 @@ public class Buscador {
         }
     }
 
+    
+    /**
+     * Cria diretório baseado na data e grava conteúdo do paramentro em um 
+     * arquivo .html 
+     * 
+     * @param conteudo String com página html
+     * @return File contendo arquivo .html gravado
+     * @throws IOException Caso aconteça algum erro ao grabar o arquivo
+     */
     public static File gravaArquivo(String conteudo) throws IOException {
         String linha;
         Date dt = new Date();

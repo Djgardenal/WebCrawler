@@ -23,13 +23,17 @@ public class FXMLController implements Initializable {
     @FXML
     private void handleButtonAction(ActionEvent event) throws IOException {
         System.out.println("Inicio");
-         baixar(url.getText(), 2);
+        baixar(url.getText(), 2);
         System.out.println("fim");
 
     }
 
+    /**
+     * Função recursiva para baixar páginas
+     * @param link Link da página a ser realizado a busca de links e downloads das páginas
+     * @param qtd Nível de profundidade a ser realizado o Crawler
+     */
     public void baixar(String link, int qtd) {
-
         String pagina = Buscador.baixarPaginaSocket(link);
         File file = null;
         try {
